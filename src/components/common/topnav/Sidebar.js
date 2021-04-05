@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import SidebarIcon from "./SidebarIcon";
+import { useCart } from "../../../context/cart/Cart";
 
 function Sidebar() {
+  let { rightActive } = useCart();
+  let [leftActive, setLeftActive] = useState(false);
+  let classHandler = () => {
+    setLeftActive(!leftActive);
+  };
+
   return (
     <>
-      <div id="sidebarMenu">
+      <SidebarIcon classHandler={classHandler} />
+      <div
+        id="sidebarMenu"
+        className={
+          leftActive && rightActive
+            ? "wellcome wellcomeRight"
+            : leftActive
+            ? "wellcome"
+            : rightActive
+            ? "wellcomeRight"
+            : ""
+        }
+      >
         <ul>
           <li>
             <a href="#">hellow world</a>

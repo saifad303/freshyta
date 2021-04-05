@@ -4,12 +4,13 @@ import "../css/bootstrap.min.css";
 import "../css/responsive.css";
 import "../css/style.css";
 import Master from "./pages";
+import Cart from "../context/cart/Cart";
 
 function App() {
   return (
-    <div>
+    <Cart>
       <Master />
-    </div>
+    </Cart>
   );
 }
 
