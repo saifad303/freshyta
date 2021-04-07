@@ -3,6 +3,9 @@ import p1 from "../../../images/p1.png";
 import p2 from "../../../images/p2.png";
 
 function HomeContainer() {
+  let addCarthandler = () => {
+    console.log("addCarthandler");
+  };
   return (
     <>
       <div className="row">
@@ -16,45 +19,14 @@ function HomeContainer() {
               </p>
               <p className="unit ml-3">2 per pack</p>
               <p className="price ml-3">$1.40</p>
-              <p className="cart">Add to Cart</p>
+              <p className="cart" onClick={addCarthandler}>
+                Add to Cart
+              </p>
             </div>
             {/* <!-- all pcontent --> */}
           </div>
 
           {/* <!-- for modal --> */}
-          <div className="when-cart-hover">
-            <ul>
-              <li>
-                <a href="#">
-                  <i className="fas fa-minus"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fas fa-plus"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          {/* <!-- when car hover --> */}
-        </div>
-        {/* <!--  single product --> */}
-
-        <div className="single-product">
-          <img src={p2} alt="product" />
-          <div className="all-pcontent">
-            <p className="title ml-3">
-              Granny Smith <br />
-              Apples
-            </p>
-            <p className="unit ml-3">2 per pack</p>
-            <p className="price ml-3">$1.40</p>
-            <p className="cart">Add to Cart</p>
-          </div>
-          {/* <!-- all pcontent --> */}
           <div className="when-cart-hover">
             <ul>
               <li>
