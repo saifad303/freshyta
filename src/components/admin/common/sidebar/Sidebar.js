@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Sidebar({ sidebarActive }) {
   return (
@@ -10,33 +11,15 @@ function Sidebar({ sidebarActive }) {
         </div>
 
         <ul className="list-unstyled components">
-          <li className="">
-            <a
-              href="#homeSubmenu"
-              data-toggle="collapse"
-              aria-expanded="false"
-              className="dropdown-toggle"
-            >
-              <i className="fas fa-home"></i>
-              Home
-            </a>
-            <ul className="collapse list-unstyled" id="homeSubmenu">
-              <li>
-                <a href="#">Home 1</a>
-              </li>
-              <li>
-                <a href="#">Home 2</a>
-              </li>
-              <li>
-                <a href="#">Home 3</a>
-              </li>
-            </ul>
-          </li>
           <li>
-            <a href="#">
-              <i className="fas fa-briefcase"></i>
-              About
-            </a>
+            <NavLink to="/admin">
+              <i className="fas fa-tachometer-alt"></i>
+              Dashboard
+            </NavLink>
+            <NavLink to="/admin/products">
+              <i className="fas fa-carrot"></i>
+              Products
+            </NavLink>
             <a
               href="#pageSubmenu"
               data-toggle="collapse"

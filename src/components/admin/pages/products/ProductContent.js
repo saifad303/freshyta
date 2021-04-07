@@ -1,6 +1,9 @@
 import React from "react";
 import ProductList from "./ProductList";
 import ProductInsert from "./ProductInsert";
+import UnitContent from "./unit/UnitContent";
+import CategoryContent from "./category/CategoryContent";
+import TagContent from "./tags/TagContent";
 
 function Products() {
   return (
@@ -29,7 +32,46 @@ function Products() {
             aria-controls="profile"
             aria-selected="false"
           >
-            Input Product
+            Insert new product
+          </a>
+        </li>
+        <li className="nav-item" role="presentation">
+          <a
+            className="nav-link"
+            id="profile-tab"
+            data-toggle="tab"
+            href="#unit"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            Unit
+          </a>
+        </li>
+        <li className="nav-item" role="presentation">
+          <a
+            className="nav-link"
+            id="profile-tab"
+            data-toggle="tab"
+            href="#category"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            Category
+          </a>
+        </li>
+        <li className="nav-item" role="presentation">
+          <a
+            className="nav-link"
+            id="profile-tab"
+            data-toggle="tab"
+            href="#tags"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            Tags
           </a>
         </li>
       </ul>
@@ -50,6 +92,31 @@ function Products() {
           aria-labelledby="profile-tab"
         >
           <ProductInsert />
+        </div>
+
+        <div
+          className="tab-pane fade"
+          id="unit"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <UnitContent />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="category"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <CategoryContent />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="tags"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <TagContent />
         </div>
       </div>
     </>

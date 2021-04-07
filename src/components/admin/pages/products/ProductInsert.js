@@ -7,7 +7,7 @@ function ProductInsert() {
         <div className="ml-auto">
           <div className="form-group row mt-5">
             <label htmlFor="inputText" className="col-md-2 col-form-label">
-              Name
+              Product title
             </label>
             <div className="col-sm-4">
               <input type="text" className="form-control" id="inputText" />
@@ -19,7 +19,7 @@ function ProductInsert() {
               htmlFor="exampleFormControlTextarea1"
               className="col-md-2 col-form-label"
             >
-              Description
+              Product description
             </label>
             <div className="col-sm-4">
               <textarea
@@ -66,7 +66,7 @@ function ProductInsert() {
 
           <div className="form-group row">
             <label htmlFor="inputState" className="col-md-2 col-form-label">
-              Cetegory
+              Product Cetegory
             </label>
             <div className="col-sm-4">
               <select
@@ -86,27 +86,7 @@ function ProductInsert() {
 
           <div className="form-group row">
             <label htmlFor="inputState" className="col-md-2 col-form-label">
-              Sub-Cetegory
-            </label>
-            <div className="col-sm-4">
-              <select
-                id="inputState"
-                className="form-control"
-                onChange={() => {}}
-              >
-                <option value="/">Choose...</option>
-                <option value="/">hasan</option>
-                <option value="/">helo</option>
-                <option value="/">opps</option>
-                <option value="/">billa</option>
-                <option value="/">tata</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label htmlFor="inputState" className="col-md-2 col-form-label">
-              Unit
+              Units
             </label>
             <div className="col-sm-4">
               <select
@@ -123,28 +103,8 @@ function ProductInsert() {
           </div>
 
           <div className="form-group row">
-            <label htmlFor="inputState" className="col-md-2 col-form-label">
-              City
-            </label>
-            <div className="col-sm-4">
-              <select
-                id="inputState"
-                className="form-control"
-                onChange={() => {}}
-              >
-                <option value="/">Choose...</option>
-                <option value="/">hasan</option>
-                <option value="/">helo</option>
-                <option value="/">opps</option>
-                <option value="/">billa</option>
-                <option value="/">tata</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="form-group row">
             <label htmlFor="exampleFormControlFile1" className="col-md-2">
-              Produc pic
+              Product picture
             </label>
             <div className="col-sm-4">
               <input
