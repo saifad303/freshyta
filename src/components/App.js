@@ -10,16 +10,19 @@ import "../../node_modules/bootstrap-select/dist/js/bootstrap-select.min";
 import Master from "./pages";
 import AdminMasetr from "./admin/pages";
 import Cart from "../context/cart/Cart";
+import UnitProvider from "../context/unit/UnitProvider";
 
 function App() {
   return (
     <Router>
-      <Cart>
-        <Switch>
-          <Route path="/" exact component={Master} />
-          <Route path="/admin" component={AdminMasetr} />
-        </Switch>
-      </Cart>
+      <UnitProvider>
+        <Cart>
+          <Switch>
+            <Route path="/" exact component={Master} />
+            <Route path="/admin" component={AdminMasetr} />
+          </Switch>
+        </Cart>
+      </UnitProvider>
     </Router>
   );
 }

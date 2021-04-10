@@ -1,13 +1,14 @@
 import firebase from "firebase/app";
 import "firebase/database";
+import "firebase/messaging";
 
 let app = firebase.initializeApp({
-  apiKey: "AIzaSyAK14GanPULMMoiDGddk5Hho0yFs1hdQRY",
-  authDomain: "freshyta-1eacc.firebaseapp.com",
-  projectId: "freshyta-1eacc",
-  storageBucket: "freshyta-1eacc.appspot.com",
-  messagingSenderId: "251952848809",
-  appId: "1:251952848809:web:1c798f7bba82dbdb65aeb8",
+  apiKey: "AIzaSyCudN92aa5gMYprjsu7cFXaP9hQhW5UKeo",
+  authDomain: "freshyta-c3fef.firebaseapp.com",
+  projectId: "freshyta-c3fef",
+  storageBucket: "freshyta-c3fef.appspot.com",
+  messagingSenderId: "521406712524",
+  appId: "1:521406712524:web:f1f0102d97cac3aa109069",
 });
 
 export const database = app.database();

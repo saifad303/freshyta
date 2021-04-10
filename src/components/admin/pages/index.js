@@ -17,8 +17,8 @@ function Index() {
     console.log(match);
   }, []);
   return (
-    <>
-      <Switch>
+    <Switch>
+      <>
         <div className="wrapper">
           <Sidebar sidebarActive={sidebarActive} />
           <div id="content">
@@ -28,8 +28,8 @@ function Index() {
           </div>
           <ProductDetail />
         </div>
-      </Switch>
-    </>
+      </>
+    </Switch>
   );
 }
 
