@@ -1,26 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { useUnit } from "../../../../../context/unit/UnitProvider";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 function UnitList() {
-  let { view, editApproved } = useUnit();
+  let {
+    view,
+    editApproved,
+    update,
+    deleteUnit,
+    loading,
+    editDisApproved,
+  } = useUnit();
+
   let [editUnit, setEditUnit] = useState("");
+  let [unit, setUnit] = useState("");
+  let [submitBtnVisible, setSubmitBtnVisible] = useState(true);
+  let [unitEmptyError, setUnitEmptyError] = useState("");
+
   useEffect(() => {
-    console.log(view);
+    // console.log("My View = ", view);
+
     let found = view.find((v) => {
       return v.editable === true;
     });
+
     // console.log("Found = ", found);
     setEditUnit(found);
+    if (found) {
+      setUnit(found.unit);
+    }
   }, [view]);
+
+  useEffect(() => {
+    if (editUnit && editUnit.unit === unit) {
+      // console.log(true);
+      setSubmitBtnVisible(true);
+    } else {
+      setSubmitBtnVisible(false);
+    }
+  }, [editUnit]);
+
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    setEditUnit("");
+    // console.log("Edit Unit = ", editUnit);
+    if (editUnit && editUnit.unit === "") {
+      setUnitEmptyError("This field is required");
+      return;
+    }
+    update(editUnit);
+    setUnitEmptyError("");
+    // setEditUnit({ ...editUnit });
   };
+
   const editUnitHandler = (e) => {
-    console.log(e.target.value);
-    setEditUnit(e.target.value);
+    setEditUnit({ ...editUnit, unit: e.target.value });
   };
+
+  const deleteUnitHandler = (id) => {
+    deleteUnit(id);
+  };
+
   return (
     <>
       <div className="table-responsive">
@@ -44,18 +83,40 @@ function UnitList() {
                               <div className="form-group">
                                 <input
                                   type="text"
-                                  value={editUnit ? editUnit.unit : ""}
+                                  value={editUnit ? `${editUnit.unit}` : ""}
                                   onChange={editUnitHandler}
                                 />
                               </div>
-                              <button type="submit">Submit</button>
+                              {submitBtnVisible ? (
+                                <>
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      setUnitEmptyError("");
+                                      editDisApproved();
+                                    }}
+                                  >
+                                    X
+                                  </button>
+                                </>
+                              ) : (
+                                <>
+                                  <button type="submit">Submit</button>
+                                </>
+                              )}
                             </form>
+                            {unitEmptyError ? (
+                              <>
+                                <p style={{ color: "red" }}>{unitEmptyError}</p>
+                              </>
+                            ) : (
+                              ""
+                            )}
                           </>
                         </td>
                       ) : (
-                        <td>
-                          {v.unit} {v.editable ? "true" : "false"}
-                        </td>
+                        <td>{v.unit}</td>
                       )}
                       {v.editable ? (
                         ""
@@ -63,11 +124,13 @@ function UnitList() {
                         <>
                           <td>
                             <a href="#" onClick={() => editApproved(v.id)}>
-                              edit
+                              <AiFillEdit size={20} />
                             </a>
                           </td>
                           <td>
-                            <a href="#">delete</a>
+                            <a href="#" onClick={() => deleteUnitHandler(v.id)}>
+                              <AiFillDelete size={20} />
+                            </a>
                           </td>
                         </>
                       )}
