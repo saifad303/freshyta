@@ -11,18 +11,21 @@ import Master from "./pages";
 import AdminMasetr from "./admin/pages";
 import Cart from "../context/cart/Cart";
 import UnitProvider from "../context/unit/UnitProvider";
+import CategoryProvider from "../context/category/CategoryProvider";
 
 function App() {
   return (
     <Router>
-      <UnitProvider>
-        <Cart>
-          <Switch>
-            <Route path="/" exact component={Master} />
-            <Route path="/admin" component={AdminMasetr} />
-          </Switch>
-        </Cart>
-      </UnitProvider>
+      <CategoryProvider>
+        <UnitProvider>
+          <Cart>
+            <Switch>
+              <Route path="/" exact component={Master} />
+              <Route path="/admin" component={AdminMasetr} />
+            </Switch>
+          </Cart>
+        </UnitProvider>
+      </CategoryProvider>
     </Router>
   );
 }
