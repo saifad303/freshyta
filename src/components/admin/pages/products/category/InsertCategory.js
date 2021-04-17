@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import { useCategory } from "../../../../../context/category/CategoryProvider";
 
-function InsertUnit() {
+function InsertCategory() {
   let { insert } = useCategory();
   let [loading, setLoading] = useState(false);
   let style = {
@@ -74,4 +74,4 @@ function InsertUnit() {
   );
 }
 
-export default InsertUnit;
+export default InsertCategory;
