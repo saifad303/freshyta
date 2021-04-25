@@ -5,6 +5,7 @@ import TagSelect from "./TagSelect";
 import CategorySelect from "./CategorySelect";
 import UnitSelect from "./UnitSelect";
 import { useProduct } from "../../../../context/product/ProductProvider";
+import ImgUploader from "./imageUpload/ImgUploader";
 
 function ProductInsert() {
   let { insert } = useProduct();
@@ -201,15 +202,10 @@ function ProductInsert() {
                   <label htmlFor="exampleFormControlFile1" className="col-md-2">
                     Product picture
                   </label>
-                  <div className="col-sm-4">
-                    <input
-                      type="file"
-                      className="form-control-file"
-                      id="exampleFormControlFile1"
-                      name="img"
-                    />
-                  </div>
+
+                  <ImgUploader />
                 </div>
+
                 {loading ? (
                   <>
                     <button
