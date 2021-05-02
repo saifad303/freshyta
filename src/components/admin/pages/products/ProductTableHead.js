@@ -17,8 +17,8 @@ function ProductTableHead() {
           </div>
         </th>
         <th scope="col">Product name</th>
-        <th scope="col">Country</th>
-        <th scope="col">Total sell</th>
+        <th scope="col">Price</th>
+        <th scope="col">Category</th>
         <th scope="col">Image</th>
       </tr>
     </>

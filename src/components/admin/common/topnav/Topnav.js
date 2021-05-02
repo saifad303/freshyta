@@ -3,7 +3,10 @@ import React from "react";
 function Topnav({ sidebarHandler }) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light"
+        style={{ marginBottom: 0 }}
+      >
         <div className="container-fluid">
           <button
             type="button"

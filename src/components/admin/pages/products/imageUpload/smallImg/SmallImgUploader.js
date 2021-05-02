@@ -1,5 +1,9 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { useProduct } from "../../../../../../context/product/ProductProvider";
+import { useField } from "formik";
 import axios from "axios";
+import UploadError from "./UploadError";
+import { Spinner } from "react-bootstrap";
 import {
   baseStyle,
   activeStyle,
@@ -9,8 +13,16 @@ import {
 import Upload from "./Upload";
 import { useDropzone } from "react-dropzone";
 
-function SmallImgUploader() {
+function SmallImgUploader({ small }) {
+  const { remover, setRemover } = useProduct();
   let [files, setFiles] = useState([]);
+  let [_, __, helpers] = useField(small);
+
+  useEffect(() => {
+    // console.log("...running");
+    setFiles([]);
+    setRemover(false);
+  }, [remover === true]);
 
   const onDrop = useCallback((accFiles, rejFiles) => {
     // console.log("acc Files", accFiles);
@@ -24,6 +36,14 @@ function SmallImgUploader() {
     // console.log(mappedAcc);
     setFiles([...mappedAcc, ...mappedRej]);
   }, []);
+
+  useEffect(() => {
+    if (files.length) {
+      helpers.setValue(files[0].url);
+    } else {
+      helpers.setValue("");
+    }
+  }, [files]);
 
   const {
     getRootProps,
@@ -47,8 +67,6 @@ function SmallImgUploader() {
     [isDragActive, isDragReject, isDragAccept]
   );
 
-  function onDelete() {}
-
   const onUpload = (url, file, delToken) => {
     // console.log(url);
     // console.log(file);
@@ -65,38 +83,67 @@ function SmallImgUploader() {
 
   function onDelete(file) {
     // console.log(file);
-    const url = "https://api.cloudinary.com/v1_1/deivsv7ca/delete_by_token";
-    let data = new FormData();
-    data.append("folder", "myimage");
-    data.append("token", files[0].delToken);
 
-    axios.post(url, data).then((res) => {
-      console.log(res);
+    if (files[0].delToken) {
+      const url = "https://api.cloudinary.com/v1_1/deivsv7ca/delete_by_token";
+
+      let data = new FormData();
+      data.append("folder", "myimage");
+      data.append("token", files[0].delToken);
+
+      axios.post(url, data).then((res) => {
+        console.log(res);
+        setFiles((curr) => {
+          return curr.filter((fw) => {
+            return fw.file !== file;
+          });
+        });
+      });
+    } else {
       setFiles((curr) => {
         return curr.filter((fw) => {
           return fw.file !== file;
         });
       });
-    });
+    }
   }
 
   return (
-    <div className="container">
-      <div className="col-lg-4">
+    <div className="col-lg-4">
+      {files.length ? (
+        ""
+      ) : (
         <div {...getRootProps({ style })}>
           <input {...getInputProps()} />
           <p style={{ color: "black" }}>Small Image</p>
         </div>
-        {files.map((fw, index) => {
-          return (
-            <div key={index}>
-              {fw.url ? <img src={fw.url} alt="" className="img-fluid" /> : ""}
-              <Upload file={fw.file} onDelete={onDelete} onUpload={onUpload} />
-            </div>
-          );
-        })}
-      </div>
-      <pre>{JSON.stringify(files, null, 4)}</pre>
+      )}
+
+      {files.map((fw, index) => {
+        return fw.errors.length ? (
+          <div key={index}>
+            <UploadError
+              file={fw.file}
+              onDelete={onDelete}
+              errors={fw.errors}
+            />
+          </div>
+        ) : (
+          <div key={index}>
+            {fw.url ? (
+              <img src={fw.url} alt="" className="img-fluid" />
+            ) : (
+              <div className="d-flex justify-content-center">
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              </div>
+            )}
+            <Upload file={fw.file} onDelete={onDelete} onUpload={onUpload} />
+          </div>
+        );
+      })}
+      {/* <pre>{JSON.stringify(files, null, 4)}</pre> */}
     </div>
   );
 }

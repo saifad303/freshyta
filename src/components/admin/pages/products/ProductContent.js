@@ -75,6 +75,7 @@ function Products() {
           </a>
         </li>
       </ul>
+
       <div className="tab-content" id="myTabContent">
         <div
           className="tab-pane fade show active"

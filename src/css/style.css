@@ -929,3 +929,15 @@ input[type="radio"] {
   text-transform: capitalize;
   text-align: center;
 }
+.table-responsive {
+  height: 405px;
+}
+tr th {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 1;
+}
+tr td {
+  cursor: pointer;
+}

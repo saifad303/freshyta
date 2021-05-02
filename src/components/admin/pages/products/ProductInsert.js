@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { object, string, number, array } from "yup";
 import TagSelect from "./TagSelect";
 import CategorySelect from "./CategorySelect";
@@ -24,6 +24,9 @@ function ProductInsert() {
     tags: [],
     category: "",
     unit: "",
+    smallImg: "",
+    mediumImg: "",
+    largeImg: "",
   };
 
   let validationSchema = object({
@@ -40,10 +43,13 @@ function ProductInsert() {
       ),
     category: object().required(),
     unit: object().required(),
+    smallImg: string().required("Small image field is required."),
+    mediumImg: string().required("Medium image field is required."),
+    largeImg: string().required("Large image field is required."),
   });
 
   async function onSubmit(values, submitProps) {
-    // setLoading(true);
+    setLoading(true);
     console.log("Form data", values);
     let category = values.category.value;
     let unit = values.unit.value;
@@ -58,16 +64,21 @@ function ProductInsert() {
       tags,
     };
 
-    // console.log("FinalSubmitProps = ", finalSubmit);
+    console.log("FinalSubmitProps = ", finalSubmit);
     // console.log("submitProps = ", submitProps);
-    try {
-      await insert({ ...finalSubmit });
-      submitProps.setSubmitting(false);
-      submitProps.resetForm();
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
+    insert({ ...finalSubmit, id: Date.now() });
+    submitProps.setSubmitting(false);
+    submitProps.resetForm();
+    setLoading(false);
+
+    // try {
+    //   await insert({ ...finalSubmit });
+    //   submitProps.setSubmitting(false);
+    //   submitProps.resetForm();
+    //   setLoading(false);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   let errorColor = {
@@ -81,8 +92,11 @@ function ProductInsert() {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
         initialValues={initialValues}
+        validateOnChange={false}
+        validateOnBlur={false}
       >
         {({ errors, values, setFieldValue, touched, setFieldTouched }) => {
+          console.log(values);
           return (
             <Form>
               <div className="ml-auto">
@@ -203,7 +217,22 @@ function ProductInsert() {
                     Product picture
                   </label>
 
-                  <ImgUploader />
+                  <div className="container">
+                    <div className="row">
+                      <ImgUploader
+                        small="smallImg"
+                        medium="mediumImg"
+                        large="largeImg"
+                      />
+                    </div>
+                  </div>
+                  <p>
+                    <b style={errorColor}>{errors.smallImg}</b>
+                    <br />
+                    <b style={errorColor}>{errors.mediumImg}</b>
+                    <br />
+                    <b style={errorColor}>{errors.largeImg}</b>
+                  </p>
                 </div>
 
                 {loading ? (
@@ -224,6 +253,7 @@ function ProductInsert() {
                   </>
                 )}
               </div>
+              <pre>{JSON.stringify(values.files, null, 4)}</pre>
             </Form>
           );
         }}

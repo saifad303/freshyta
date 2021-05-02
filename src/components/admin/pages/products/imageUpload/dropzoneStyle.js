@@ -11,9 +11,10 @@ export const baseStyle = {
   borderColor: "black",
   borderStyle: "dashed",
   backgroundColor: "grey",
-  fontSize: "24px",
+  fontSize: "18px",
   outline: "none",
   transition: "border .24s ease-in-out",
+  cursor: "pointer",
 };
 
 export const activeStyle = {
