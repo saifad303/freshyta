@@ -17,6 +17,7 @@ function ProductProvider({ children }) {
   let [isEmpty, setIsEmpty] = useState(false);
   let [loadMoreLoading, setLoadMoreLoading] = useState(false);
   let [isAreaSelected, setIsAreaSelected] = useState(false);
+  let [limit, setLimit] = useState(1);
 
   let insert = (product) => {
     const keys = generateKeyWords(product.title);
@@ -43,6 +44,14 @@ function ProductProvider({ children }) {
       });
   };
 
+  const setLimithandler = (limit) => {
+    setLimit(limit);
+  };
+
+  const addCarthandler = (id) => {
+    console.log(id);
+  };
+
   const serachByHandler = (value) => {
     // console.log(value);
     setSearchBy(value);
@@ -55,7 +64,7 @@ function ProductProvider({ children }) {
       .orderBy("id", "desc")
       .where("keys", "array-contains", searchBy)
       .startAfter(lastDoc)
-      .limit(5)
+      .limit(limit)
       .get()
       .then((snap) => {
         // console.log(snap.id);
@@ -85,7 +94,7 @@ function ProductProvider({ children }) {
       .collection("products")
       .where("keys", "array-contains", searchBy)
       .orderBy("id", "desc")
-      .limit(5)
+      .limit(limit)
       .get()
       .then((snap) => {
         // console.log(snap.docs[0].id);
@@ -105,7 +114,7 @@ function ProductProvider({ children }) {
           setIsEmpty(true);
         }
       });
-  }, [searchBy]);
+  }, [searchBy, limit]);
 
   const value = {
     insert,
@@ -118,6 +127,8 @@ function ProductProvider({ children }) {
     loadMoreLoading,
     isEmpty,
     isAreaSelected,
+    setLimithandler,
+    addCarthandler,
   };
 
   return (

@@ -1,62 +1,81 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { AiFillEdit } from "react-icons/ai";
+import { Modal } from "react-bootstrap";
 
-function ProductDetail() {
+function ProductDetail({ editHandler, handleClose, show, dataToEdit }) {
+  useEffect(() => {
+    console.log(dataToEdit);
+  }, [dataToEdit]);
   return (
     <>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content detail-modal">
-            <div className="modal-header">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="product d-flex">
-                <div className="proDetailImg">
-                  <img src="images/p1.png" alt="Product" />
-                </div>
-                {/* <!-- proDetailImg --> */}
-                <div className="proDetailContent">
-                  <p className="detitle">Citrus Jumbo Yellow Lemons</p>
-                  <p className="deunit">2 per pack</p>
-                  <p className="deprice">$1.40</p>
-                  <p className="destock">Available in stock</p>
-                </div>
-                {/* <!-- proDetailContent --> */}
-              </div>
-              {/* <!-- product --> */}
+      {dataToEdit ? (
+        <>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+            animation={false}
+          >
+            <Modal.Body>
+              <div className="modal-dialog">
+                <div className="modal-content detail-modal">
+                  <div className="modal-header">
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      onClick={handleClose}
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
 
-              <div className="proDescrip">
-                <h4>About this Product</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Eligendi illo fugiat eius illum dolor corrupti autem,
-                  aspernatur, recusandae veniam maxime doloremque commodi fuga
-                  nisi asperiores voluptatum debitis temporibus omnis, unde
-                  ipsum! Rerum labore, odit, saepe maiores sit molestias
-                  quisquam.
-                </p>
-              </div>
-              {/* <!-- proDescrip --> */}
+                  <div className="modal-body">
+                    <div className="product d-flex">
+                      <div className="proDetailImg">
+                        <img src={dataToEdit.smallImg} alt="Product" />
+                      </div>
+                      {/* <!-- proDetailImg --> */}
+                      <div className="proDetailContent">
+                        <p className="detitle">{dataToEdit.title}</p>
+                        <p className="deunit">2 {dataToEdit.unit}</p>
+                        <p className="deprice">${dataToEdit.price}</p>
+                        <p className="deprice">
+                          Category: {dataToEdit.category}
+                        </p>
+                        <p className="destock">Available in stock</p>
+                      </div>
+                      {/* <!-- proDetailContent --> */}
+                    </div>
+                    {/* <!-- product --> */}
 
-              <button className="btn btn-info">Edit</button>
-            </div>
-            {/* <!-- modal body --> */}
-          </div>
-        </div>
-      </div>
+                    <div className="proDescrip">
+                      <h4>About this Product</h4>
+                      <p>{dataToEdit.description}</p>
+                    </div>
+                    {/* <!-- proDescrip --> */}
+
+                    <button
+                      className="btn btn-info"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        editHandler();
+                      }}
+                    >
+                      <AiFillEdit />
+                    </button>
+                  </div>
+                  {/* <!-- modal body --> */}
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

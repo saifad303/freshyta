@@ -9,7 +9,7 @@ function ProductsList() {
     <>
       <ProductSearch />
       <div className="table-responsive">
-        <table className="table table-striped mt-3">
+        <table className="table table-striped">
           <thead>
             <ProductTableHead />
           </thead>

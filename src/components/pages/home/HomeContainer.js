@@ -1,54 +1,17 @@
 import React from "react";
-import p1 from "../../../images/p1.png";
-import p2 from "../../../images/p2.png";
+import Card from "../common/Card";
+import "./main.css";
 
 function HomeContainer() {
-  let addCarthandler = () => {
-    console.log("addCarthandler");
-  };
   return (
     <>
-      <div className="row">
-        <div className="single-product">
-          <div data-toggle="modal" data-target="#exampleModal">
-            <img src={p1} alt="product" />
-            <div className="all-pcontent">
-              <p className="title ml-3">
-                Citrus Jumbo <br />
-                Yellow Lemons
-              </p>
-              <p className="unit ml-3">2 per pack</p>
-              <p className="price ml-3">$1.40</p>
-              <p className="cart" onClick={addCarthandler}>
-                Add to Cart
-              </p>
-            </div>
-            {/* <!-- all pcontent --> */}
-          </div>
-
-          {/* <!-- for modal --> */}
-          <div className="when-cart-hover">
-            <ul>
-              <li>
-                <a href="#">
-                  <i className="fas fa-minus"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fas fa-plus"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          {/* <!-- when car hover --> */}
+      <div className="main-content">
+        <div className="content-body bg-white px-6 py-6 mx-3 rounded-xl flex content-start flex-wrap">
+          {[1, 1, 1, 1, 1, 1, 1, 1, 1].map(() => {
+            return <Card />;
+          })}
         </div>
-        {/* <!--  single product --> */}
       </div>
-      {/* <!-- row --> */}
     </>
   );
 }

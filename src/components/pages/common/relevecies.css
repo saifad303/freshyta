@@ -1,0 +1,16 @@
+/* relevency-contents */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 20px;
+}
+
+:hover.relevency-contents::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 20px;
+}

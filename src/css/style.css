@@ -441,17 +441,16 @@ input[type="radio"] {
   transform: translateX(-50%);
 }
 /* cart product start */
-/* .when-cart-hover {
+.when-cart-hover {
   position: absolute;
   bottom: -50px;
   right: 0;
   left: 0;
-  transition: 0.4s;
 }
 .product-area .single-product:hover .when-cart-hover {
   bottom: 0px;
-} */
-/* .product-area .single-product .when-cart-hover ul {
+}
+.product-area .single-product .when-cart-hover ul {
   margin: 0;
   padding: 0;
   display: flex;
@@ -460,7 +459,7 @@ input[type="radio"] {
   height: 40px;
   border-radius: 10px;
   border: 1px solid #ee4054;
-} */
+}
 .proActive {
   bottom: 0px;
 }
