@@ -49,7 +49,7 @@ function ProductProvider({ children }) {
   };
 
   const increaseCartAmount = (id) => {
-    console.log("increase = ", id);
+    // console.log("increase = ", id);
 
     const sessionData = JSON.parse(sessionStorage.getItem("products"));
 
@@ -87,7 +87,7 @@ function ProductProvider({ children }) {
   };
 
   const addCarthandler = (id) => {
-    console.log(id);
+    // console.log(id);
 
     const dataToBeSessioned = view.find((product) => {
       return id === product.id;

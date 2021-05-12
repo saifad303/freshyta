@@ -22,7 +22,7 @@ function Card({ title, price, unit, id }) {
       });
 
       if (amount) {
-        console.log(amount);
+        // console.log(amount);
         setCartAmount(amount.cartAmount);
       }
     }
