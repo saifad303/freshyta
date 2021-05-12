@@ -14,3 +14,34 @@
   background: #ccc;
   border-radius: 20px;
 }
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .relevencies .relevency-contents {
+    display: none;
+  }
+
+  .relevencies .relevency-selection button {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .relevencies .relevency-contents {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .relevencies .relevency-horizontal {
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .relevencies .relevency-horizontal {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .relevencies .relevency-horizontal {
+    display: none;
+  }
+}

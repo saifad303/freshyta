@@ -16,8 +16,8 @@ function ProductProvider({ children }) {
   let [lastDoc, setLastDoc] = useState();
   let [isEmpty, setIsEmpty] = useState(false);
   let [loadMoreLoading, setLoadMoreLoading] = useState(false);
-  let [isAreaSelected, setIsAreaSelected] = useState(false);
   let [limit, setLimit] = useState(1);
+  let [isSession, setIsSession] = useState(false);
 
   let insert = (product) => {
     const keys = generateKeyWords(product.title);
@@ -48,8 +48,75 @@ function ProductProvider({ children }) {
     setLimit(limit);
   };
 
+  const increaseCartAmount = (id) => {
+    console.log("increase = ", id);
+
+    const sessionData = JSON.parse(sessionStorage.getItem("products"));
+
+    if (sessionData) {
+      const updateSessionData = sessionData.map((data) => {
+        if (data.id === id) {
+          return { cartAmount: data.cartAmount++, ...data };
+        }
+
+        return data;
+      });
+
+      sessionStorage.setItem("products", JSON.stringify(updateSessionData));
+
+      setIsSession(true);
+    }
+  };
+
+  const decearseCartAmount = (id) => {
+    const sessionData = JSON.parse(sessionStorage.getItem("products"));
+
+    if (sessionData) {
+      const updateSessionData = sessionData.map((data) => {
+        if (data.id === id && data.cartAmount > 0) {
+          return { cartAmount: data.cartAmount--, ...data };
+        }
+
+        return data;
+      });
+
+      sessionStorage.setItem("products", JSON.stringify(updateSessionData));
+
+      setIsSession(true);
+    }
+  };
+
   const addCarthandler = (id) => {
     console.log(id);
+
+    const dataToBeSessioned = view.find((product) => {
+      return id === product.id;
+    });
+
+    const oldData = JSON.parse(sessionStorage.getItem("products"));
+
+    if (oldData) {
+      const sessionData = JSON.stringify([
+        {
+          id: dataToBeSessioned.id,
+          cartAmount: 1,
+        },
+        ...oldData,
+      ]);
+      sessionStorage.setItem("products", sessionData);
+      setIsSession(true);
+    } else {
+      const sessionData = JSON.stringify([
+        {
+          id: dataToBeSessioned.id,
+          cartAmount: 1,
+        },
+      ]);
+      sessionStorage.setItem("products", sessionData);
+      setIsSession(true);
+    }
+
+    // console.log(dataToBeSessioned);
   };
 
   const serachByHandler = (value) => {
@@ -71,7 +138,7 @@ function ProductProvider({ children }) {
 
         if (snap.size !== 0) {
           const newData = snap.docs.map((doc) => {
-            return { ...doc.data(), doc: doc.id };
+            return { ...doc.data(), doc: doc.id, cartAmount: 0 };
           });
 
           const lastData = snap.docs[snap.docs.length - 1];
@@ -102,7 +169,7 @@ function ProductProvider({ children }) {
         if (snap.size !== 0) {
           let data = snap.docs.map((doc) => {
             //   console.log(doc.id);
-            return { ...doc.data(), doc: doc.id };
+            return { ...doc.data(), doc: doc.id, cartAmount: 0 };
           });
 
           const lastData = snap.docs[snap.docs.length - 1];
@@ -126,9 +193,12 @@ function ProductProvider({ children }) {
     LoadMoreHandler,
     loadMoreLoading,
     isEmpty,
-    isAreaSelected,
     setLimithandler,
     addCarthandler,
+    isSession,
+    setIsSession,
+    increaseCartAmount,
+    decearseCartAmount,
   };
 
   return (

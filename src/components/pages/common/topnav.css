@@ -1,0 +1,145 @@
+@media (min-width: 320px) and (max-width: 479px) {
+  .top-nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .top-nav .top-nav-right .item-1,
+  .item-2,
+  .item-3 {
+    display: none;
+  }
+
+  /* .item-4,
+  .item-5,
+  .side-menu  */
+
+  .top-nav .search-bar input {
+    width: 13rem;
+    margin-left: 8rem;
+    display: none;
+  }
+
+  .top-nav .search-bar button {
+    right: -18px;
+    display: none;
+  }
+  .top-nav .top-nav-left a {
+    font-size: 1.5rem;
+  }
+  .top-nav .top-nav-left .ai-menu-icon {
+    width: 2rem;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .top-nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .top-nav .top-nav-right .item-1,
+  .item-2,
+  .item-3 {
+    display: none;
+  }
+
+  /* .item-4,
+      .item-5,
+      .side-menu  */
+
+  .top-nav .search-bar input {
+    width: 11rem;
+    margin-left: 8rem;
+    display: none;
+  }
+
+  .top-nav .search-bar button {
+    right: -19px;
+    display: none;
+  }
+  .top-nav .top-nav-left a {
+    font-size: 1.5rem;
+  }
+  .top-nav .top-nav-left .ai-menu-icon {
+    width: 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .top-nav {
+    padding-left: 1.5rem;
+    padding-right: 8rem;
+  }
+  .top-nav .top-nav-right .item-1,
+  .item-2,
+  .item-3 {
+    display: none;
+  }
+
+  .top-nav .top-nav-right .left-search-btn {
+    display: none;
+  }
+
+  .top-nav .top-nav-right .side-menu {
+    font-size: 10px;
+  }
+
+  .top-nav .top-nav-left {
+    margin-right: 67px;
+  }
+
+  .top-nav .search-bar input {
+    width: 29rem;
+    margin-left: 2rem;
+    /* display: none; */
+  }
+
+  /* .top-nav .search-bar input::placeholder {
+    color: #f3f4f6;
+  } */
+
+  .top-nav .search-bar button {
+    right: 18px;
+    /* display: none; */
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .top-nav .top-nav-right .item-1,
+  .item-2,
+  .item-3 {
+    font-size: 13px;
+  }
+
+  .top-nav .top-nav-left {
+    margin-right: 30px;
+  }
+  .top-nav .top-nav-right .side-menu {
+    display: none;
+  }
+  .top-nav .top-nav-right .left-search-btn {
+    display: none;
+  }
+
+  .top-nav .search-bar input {
+    width: 26rem;
+    /* display: none; */
+  }
+
+  .top-nav .search-bar button {
+    right: 38px;
+    /* display: none; */
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  .top-nav .top-nav-right .side-menu {
+    display: none;
+  }
+  .top-nav .top-nav-right .left-search-btn {
+    display: none;
+  }
+  .top-nav .search-bar input {
+    /* width: 27rem; */
+    margin-left: 2.5rem;
+    /* display: none; */
+  }
+}
