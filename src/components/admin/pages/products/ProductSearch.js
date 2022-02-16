@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from "react";
 import { useProduct } from "../../../../context/product/ProductProvider";
 

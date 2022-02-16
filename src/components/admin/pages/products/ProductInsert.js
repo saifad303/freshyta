@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { object, string, number, array } from "yup";
@@ -91,7 +92,6 @@ function ProductInsert() {
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
-        initialValues={initialValues}
         validateOnChange={false}
         validateOnBlur={false}
       >

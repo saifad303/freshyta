@@ -1,16 +1,11 @@
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { useCategory } from "../../../../../context/category/CategoryProvider";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 function CategoryList() {
-  let {
-    view,
-    editApproved,
-    update,
-    deleteCat,
-    loading,
-    editDisApproved,
-  } = useCategory();
+  let { view, editApproved, update, deleteCat, loading, editDisApproved } =
+    useCategory();
 
   let [editCategory, setEditCategory] = useState("");
   let [category, setCategory] = useState("");
