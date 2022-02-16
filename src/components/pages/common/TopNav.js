@@ -7,6 +7,7 @@ import {
 import { FaUserCircle } from "react-icons/fa";
 import { BsGrid3X3Gap } from "react-icons/bs";
 import LeftSideMenu from "./LeftSideMenu";
+import { NavLink } from "react-router-dom";
 import "./topnav.css";
 
 function TopNav({ sidebarMenuHandler }) {
@@ -47,24 +48,12 @@ function TopNav({ sidebarMenuHandler }) {
           </button>
         </div>
         <div className="top-nav-right relative w-2/6 flex items-center space-x-7 justify-end">
-          <a
-            href=""
+          <NavLink
+            to="/admin/products"
             className="item-1 text-base font-semibold text-gray-600 hover:text-red-500"
           >
-            New
-          </a>
-          <a
-            href=""
-            className="item-2 text-base font-semibold text-gray-600 hover:text-red-500"
-          >
-            Deals
-          </a>
-          <a
-            href=""
-            className="item-3 text-base font-semibold text-gray-600 hover:text-red-500"
-          >
-            Shop by brand
-          </a>
+            Admin Panel
+          </NavLink>
           <button
             className="left-search-btn right-4 text-red-500"
             onClick={searchShowHandler}
